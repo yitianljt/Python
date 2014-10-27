@@ -54,8 +54,8 @@ while 1:
                 if not len(data):
                     break
                 clientsocket.sendall(data)
-        except:(KeyboardInterrupt, SystemExit):
-            raise
+        #except:(KeyboardInterrupt, SystemExit):
+         #   raise
         except:
             traceback.print_exc()
                 
