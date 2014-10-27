@@ -32,6 +32,7 @@ print "Parent at %d listening for connections " % os.getpid()
 
 while 1:
     try:
+        print "try pid = ",os.getpid()
         clientsocket, clientaddr = s.accept()
     except KeyboardInterrupt:
         raise
@@ -54,12 +55,19 @@ while 1:
                 if not len(data):
                     break
                 clientsocket.sendall(data)
-        #except:(KeyboardInterrupt, SystemExit):
-         #   raise
+        except (KeyboardInterrupt, SystemExit):
+            raise
         except:
             traceback.print_exc()
-                
-                
+            
+        try:
+            clientsocket.close()
+        except KeyboardInterrupt:
+            raise
+        except:
+            traceback.print_exc()
+        sys.exit(0)
+         
                 
             
         
